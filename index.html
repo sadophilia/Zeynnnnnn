@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sürpriz!</title>
+    <style>
+        body {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #fff0f0;
+            text-align: center;
+            overflow: hidden;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 400px;
+        }
+
+        img {
+            width: 100%;
+            max-width: 250px;
+            border-radius: 20px;
+            margin-bottom: 20px;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+        }
+
+        h1 {
+            color: #ff4d6d;
+            font-size: 1.5rem;
+            margin-bottom: 20px;
+        }
+
+        .buttons {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 15px;
+        }
+
+        button {
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: all 0.2s ease;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        }
+
+        #evetBtn {
+            background-color: #43a047;
+            color: white;
+            padding: 15px 40px;
+            font-size: 1.2rem;
+            order: 2;
+        }
+
+        #hayirBtn {
+            background-color: #e53935;
+            color: white;
+            padding: 10px 25px;
+            font-size: 1rem;
+            order: 1;
+        }
+
+        #sonuc {
+            display: none;
+        }
+
+        #sonuc h1 {
+            color: #1e88e5;
+        }
+    </style>
+</head>
+<body>
+
+    <div id="teklif" class="container">
+        <img src="https://media.tenor.com/717-X6_D_mEAAAAM/cat-please.gif" alt="Lütfen">
+        <h1>BENİMLE EVLENİR MİSİN? LÜTFENNNN</h1>
+        
+        <div class="buttons">
+            <button id="hayirBtn" onclick="hayirTikla()">A) Hayır</button>
+            <button id="evetBtn" onclick="evetTikla()">B) Evet</button>
+        </div>
+    </div>
+
+    <div id="sonuc" class="container">
+        <img src="https://i.pinimg.com/736x/8e/31/34/8e31343729906666723b762512638d01.jpg" alt="Mutlu">
+        <h1>KABUL EDECEĞİNİ BİLİYORDUM TESEKKUR EDERİMMMMM</h1>
+    </div>
+
+    <script>
+        let evetSize = 1.2;
+        let hayirSize = 1;
+        let tiklama = 0;
+
+        function hayirTikla() {
+            tiklama++;
+            
+            // Evet butonu devleşiyor
+            evetSize += 0.8;
+            const evet = document.getElementById('evetBtn');
+            evet.style.fontSize = evetSize + 'rem';
+            evet.style.padding = (evetSize * 10) + 'px ' + (evetSize * 30) + 'px';
+
+            // Hayır butonu küçülüyor
+            hayirSize -= 0.15;
+            const hayir = document.getElementById('hayirBtn');
+            
+            if (hayirSize < 0.3 || tiklama > 6) {
+                hayir.style.display = 'none'; // Tamamen yok et
+            } else {
+                hayir.style.fontSize = hayirSize + 'rem';
+                hayir.style.padding = (hayirSize * 8) + 'px ' + (hayirSize * 20) + 'px';
+            }
+        }
+
+        function evetTikla() {
+            document.getElementById('teklif').style.display = 'none';
+            document.getElementById('sonuc').style.display = 'block';
+            
+            // Konfeti efekti gibi küçük bir kutlama (isteğe bağlı)
+            document.body.style.backgroundColor = "#e3f2fd";
+        }
+    </script>
+</body>
+</html>
